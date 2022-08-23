@@ -4,7 +4,5 @@ import lombok.Getter;
 
 @Getter
 public class DeleteRecruitRequest {
-
     private Long id;
-
 }
