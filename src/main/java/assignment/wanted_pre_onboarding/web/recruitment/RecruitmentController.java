@@ -2,6 +2,7 @@ package assignment.wanted_pre_onboarding.web.recruitment;
 
 import assignment.wanted_pre_onboarding.common.ApiResponse;
 import assignment.wanted_pre_onboarding.service.RecruitmentService;
+import assignment.wanted_pre_onboarding.web.recruitment.dto.request.DeleteRecruitRequest;
 import assignment.wanted_pre_onboarding.web.recruitment.dto.request.SaveRecruitRequest;
 import assignment.wanted_pre_onboarding.web.recruitment.dto.request.UpdateRecruitRequest;
 import assignment.wanted_pre_onboarding.web.recruitment.dto.response.SaveRecruitResponse;
@@ -25,6 +26,12 @@ public class RecruitmentController {
     @PatchMapping("/update")
     public ApiResponse<UpdateRecruitResponse> updateRecruit(@RequestBody UpdateRecruitRequest request) {
         UpdateRecruitResponse response = recruitmentService.updateRecruit(request);
+        return ApiResponse.success(response);
+    }
+
+    @DeleteMapping("/delete")
+    public ApiResponse<String> deleteRecruit(@RequestBody DeleteRecruitRequest request) {
+        String response = recruitmentService.deleteRecruit(request);
         return ApiResponse.success(response);
     }
 }

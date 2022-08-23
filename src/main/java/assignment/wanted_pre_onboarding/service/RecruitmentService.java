@@ -2,6 +2,7 @@ package assignment.wanted_pre_onboarding.service;
 
 import assignment.wanted_pre_onboarding.domain.recruiment.Recruitment;
 import assignment.wanted_pre_onboarding.domain.recruiment.RecruitmentRepository;
+import assignment.wanted_pre_onboarding.web.recruitment.dto.request.DeleteRecruitRequest;
 import assignment.wanted_pre_onboarding.web.recruitment.dto.request.SaveRecruitRequest;
 import assignment.wanted_pre_onboarding.web.recruitment.dto.request.UpdateRecruitRequest;
 import assignment.wanted_pre_onboarding.web.recruitment.dto.response.SaveRecruitResponse;
@@ -46,5 +47,14 @@ public class RecruitmentService {
         UpdateRecruitResponse response = UpdateRecruitResponse.of(updated);
 
         return response;
+    }
+
+    public String deleteRecruit(DeleteRecruitRequest request) {
+        Optional<Recruitment> findRecruit = recruitmentRepository.findById(request.getId());
+        String position = findRecruit.get().getPosition();
+
+        recruitmentRepository.delete(findRecruit.get());
+
+        return "해당 " + position + " 채용 공고가 삭제되었습니다.";
     }
 }
