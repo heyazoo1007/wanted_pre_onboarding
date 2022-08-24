@@ -3,12 +3,15 @@ package assignment.wanted_pre_onboarding.web.recruitment;
 import assignment.wanted_pre_onboarding.common.ApiResponse;
 import assignment.wanted_pre_onboarding.service.RecruitmentService;
 import assignment.wanted_pre_onboarding.web.recruitment.dto.request.DeleteRecruitRequest;
-import assignment.wanted_pre_onboarding.web.recruitment.dto.request.SaveRecruitRequest;
+import assignment.wanted_pre_onboarding.web.recruitment.dto.request.CreateRecruitRequest;
 import assignment.wanted_pre_onboarding.web.recruitment.dto.request.UpdateRecruitRequest;
-import assignment.wanted_pre_onboarding.web.recruitment.dto.response.SaveRecruitResponse;
+import assignment.wanted_pre_onboarding.web.recruitment.dto.response.GetRecruitListResponse;
+import assignment.wanted_pre_onboarding.web.recruitment.dto.response.CreateRecruitResponse;
 import assignment.wanted_pre_onboarding.web.recruitment.dto.response.UpdateRecruitResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -17,9 +20,9 @@ public class RecruitmentController {
 
     private final RecruitmentService recruitmentService;
 
-    @PostMapping("/save")
-    public ApiResponse<SaveRecruitResponse> saveRecruit(@RequestBody SaveRecruitRequest request) {
-        SaveRecruitResponse response = recruitmentService.saveRecruit(request);
+    @PostMapping("/create")
+    public ApiResponse<CreateRecruitResponse> createRecruit(@RequestBody CreateRecruitRequest request) {
+        CreateRecruitResponse response = recruitmentService.createRecruit(request);
         return ApiResponse.success(response);
     }
 
@@ -33,5 +36,12 @@ public class RecruitmentController {
     public ApiResponse<String> deleteRecruit(@RequestBody DeleteRecruitRequest request) {
         String response = recruitmentService.deleteRecruit(request);
         return ApiResponse.success(response);
+    }
+
+    //채용공고 목록 버튼 누르면 나오는 로직, 아직 로그인 기능이 없으므로 사용자관련 로직이 없다
+    @GetMapping("/list")
+    public ApiResponse<List<GetRecruitListResponse>> getRecruitList() {
+        List<GetRecruitListResponse> responses = recruitmentService.getRecruitList();
+        return ApiResponse.success(responses);
     }
 }
