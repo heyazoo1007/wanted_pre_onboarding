@@ -4,7 +4,9 @@ import assignment.wanted_pre_onboarding.common.ApiResponse;
 import assignment.wanted_pre_onboarding.service.RecruitmentService;
 import assignment.wanted_pre_onboarding.web.recruitment.dto.request.DeleteRecruitRequest;
 import assignment.wanted_pre_onboarding.web.recruitment.dto.request.CreateRecruitRequest;
+import assignment.wanted_pre_onboarding.web.recruitment.dto.request.GetRecruitDetailRequest;
 import assignment.wanted_pre_onboarding.web.recruitment.dto.request.UpdateRecruitRequest;
+import assignment.wanted_pre_onboarding.web.recruitment.dto.response.GetRecruitDetailResponse;
 import assignment.wanted_pre_onboarding.web.recruitment.dto.response.GetRecruitListResponse;
 import assignment.wanted_pre_onboarding.web.recruitment.dto.response.CreateRecruitResponse;
 import assignment.wanted_pre_onboarding.web.recruitment.dto.response.UpdateRecruitResponse;
@@ -43,5 +45,11 @@ public class RecruitmentController {
     public ApiResponse<List<GetRecruitListResponse>> getRecruitList() {
         List<GetRecruitListResponse> responses = recruitmentService.getRecruitList();
         return ApiResponse.success(responses);
+    }
+
+    @GetMapping("/detail/{id}")
+    public ApiResponse<GetRecruitDetailResponse> getRecruitDetail(@PathVariable Long id) {
+        GetRecruitDetailResponse response = recruitmentService.getRecruitDetail(id);
+        return ApiResponse.success(response);
     }
 }

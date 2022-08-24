@@ -6,7 +6,9 @@ import assignment.wanted_pre_onboarding.domain.recruitment.Recruitment;
 import assignment.wanted_pre_onboarding.domain.recruitment.RecruitmentRepository;
 import assignment.wanted_pre_onboarding.web.recruitment.dto.request.DeleteRecruitRequest;
 import assignment.wanted_pre_onboarding.web.recruitment.dto.request.CreateRecruitRequest;
+import assignment.wanted_pre_onboarding.web.recruitment.dto.request.GetRecruitDetailRequest;
 import assignment.wanted_pre_onboarding.web.recruitment.dto.request.UpdateRecruitRequest;
+import assignment.wanted_pre_onboarding.web.recruitment.dto.response.GetRecruitDetailResponse;
 import assignment.wanted_pre_onboarding.web.recruitment.dto.response.GetRecruitListResponse;
 import assignment.wanted_pre_onboarding.web.recruitment.dto.response.CreateRecruitResponse;
 import assignment.wanted_pre_onboarding.web.recruitment.dto.response.UpdateRecruitResponse;
@@ -79,5 +81,22 @@ public class RecruitmentService {
         }
 
         return recruitList;
+    }
+
+    public GetRecruitDetailResponse getRecruitDetail(Long id) {
+        Optional<Recruitment> findRecruit = recruitmentRepository.findById(id);
+        Company company = findRecruit.get().getCompany();
+        Long companyId = company.getId();
+
+        //recruitrepository에서 companyId를 가진 채용공고의 id가 필요함
+        List<Long> companyRecruits = new ArrayList<>();
+        List<Recruitment> recruits = recruitmentRepository.findByCompanyId(companyId);
+        for (Recruitment recruit : recruits) {
+            companyRecruits.add(recruit.getId());
+        }
+
+        GetRecruitDetailResponse response = GetRecruitDetailResponse.of(company, findRecruit.get(), companyRecruits);
+
+        return response;
     }
 }
