@@ -1,6 +1,6 @@
 package assignment.wanted_pre_onboarding.web.recruitment.dto.response;
 
-import assignment.wanted_pre_onboarding.domain.recruiment.Recruitment;
+import assignment.wanted_pre_onboarding.domain.recruitment.Recruitment;
 import lombok.*;
 
 @ToString

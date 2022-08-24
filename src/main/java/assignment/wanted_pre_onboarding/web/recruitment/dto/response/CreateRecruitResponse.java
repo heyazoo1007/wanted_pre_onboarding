@@ -1,12 +1,12 @@
 package assignment.wanted_pre_onboarding.web.recruitment.dto.response;
 
-import assignment.wanted_pre_onboarding.domain.recruiment.Recruitment;
+import assignment.wanted_pre_onboarding.domain.recruitment.Recruitment;
 import lombok.*;
 
 @ToString
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class SaveRecruitResponse {
+public class CreateRecruitResponse {
 
     private Long id;
     private String position;
@@ -15,7 +15,7 @@ public class SaveRecruitResponse {
     private String techInfo;
 
     @Builder
-    public SaveRecruitResponse(Long id, String position, Integer reward, String contents, String techInfo) {
+    public CreateRecruitResponse(Long id, String position, Integer reward, String contents, String techInfo) {
         this.id = id;
         this.position = position;
         this.reward = reward;
@@ -23,9 +23,9 @@ public class SaveRecruitResponse {
         this.techInfo = techInfo;
     }
 
-    public static SaveRecruitResponse of(Recruitment recruitment) {
-        SaveRecruitResponse response = SaveRecruitResponse.builder()
-                .id(recruitment.getCompany_id())
+    public static CreateRecruitResponse of(Recruitment recruitment) {
+        CreateRecruitResponse response = CreateRecruitResponse.builder()
+                .id(recruitment.getId())
                 .position(recruitment.getPosition())
                 .reward(recruitment.getReward())
                 .contents(recruitment.getContents())

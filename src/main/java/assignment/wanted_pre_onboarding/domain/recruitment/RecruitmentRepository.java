@@ -1,4 +1,4 @@
-package assignment.wanted_pre_onboarding.domain.recruiment;
+package assignment.wanted_pre_onboarding.domain.recruitment;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

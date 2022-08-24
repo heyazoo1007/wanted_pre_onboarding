@@ -1,6 +1,7 @@
-package assignment.wanted_pre_onboarding.domain.recruiment;
+package assignment.wanted_pre_onboarding.domain.recruitment;
 
 
+import assignment.wanted_pre_onboarding.domain.company.Company;
 import lombok.*;
 
 import javax.persistence.*;
@@ -13,7 +14,11 @@ public class Recruitment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long company_id;
+    private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "COMPANY_ID")
+    private Company company;
 
     @Setter
     private String position;
@@ -28,15 +33,17 @@ public class Recruitment {
     private String techInfo;
 
     @Builder
-    public Recruitment(String position, Integer reward, String contents, String techInfo) {
+    public Recruitment(Company company, String position, Integer reward, String contents, String techInfo) {
+        this.company = company;
         this.position = position;
         this.reward = reward;
         this.contents = contents;
         this.techInfo = techInfo;
     }
 
-    public static Recruitment of(String position, Integer reward, String contents, String techInfo) {
+    public static Recruitment of(Company company, String position, Integer reward, String contents, String techInfo) {
         Recruitment recruitment = Recruitment.builder()
+                .company(company)
                 .position(position)
                 .reward(reward)
                 .contents(contents)
