@@ -3,10 +3,7 @@ package assignment.wanted_pre_onboarding.web.recruitment;
 import assignment.wanted_pre_onboarding.common.ApiResponse;
 import assignment.wanted_pre_onboarding.service.RecruitmentService;
 import assignment.wanted_pre_onboarding.web.recruitment.dto.request.*;
-import assignment.wanted_pre_onboarding.web.recruitment.dto.response.GetRecruitDetailResponse;
-import assignment.wanted_pre_onboarding.web.recruitment.dto.response.GetRecruitListResponse;
-import assignment.wanted_pre_onboarding.web.recruitment.dto.response.CreateRecruitResponse;
-import assignment.wanted_pre_onboarding.web.recruitment.dto.response.UpdateRecruitResponse;
+import assignment.wanted_pre_onboarding.web.recruitment.dto.response.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -47,6 +44,12 @@ public class RecruitmentController {
     @GetMapping("/detail/{id}")
     public ApiResponse<GetRecruitDetailResponse> getRecruitDetail(@PathVariable Long id) {
         GetRecruitDetailResponse response = recruitmentService.getRecruitDetail(id);
+        return ApiResponse.success(response);
+    }
+
+    @GetMapping("/search")
+    public ApiResponse<List<GetSearchRecruitResponse>> getSearchRecruitList(@RequestParam String search) {
+        List<GetSearchRecruitResponse> response = recruitmentService.getSearchRecruitList(search);
         return ApiResponse.success(response);
     }
 }

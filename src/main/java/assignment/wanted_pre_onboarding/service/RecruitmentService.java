@@ -1,18 +1,11 @@
 package assignment.wanted_pre_onboarding.service;
 
-import assignment.wanted_pre_onboarding.domain.apply.Apply;
-import assignment.wanted_pre_onboarding.domain.apply.ApplyRepository;
 import assignment.wanted_pre_onboarding.domain.company.Company;
 import assignment.wanted_pre_onboarding.domain.company.CompanyRepository;
 import assignment.wanted_pre_onboarding.domain.recruitment.Recruitment;
 import assignment.wanted_pre_onboarding.domain.recruitment.RecruitmentRepository;
-import assignment.wanted_pre_onboarding.domain.user.User;
-import assignment.wanted_pre_onboarding.domain.user.UserRepository;
 import assignment.wanted_pre_onboarding.web.recruitment.dto.request.*;
-import assignment.wanted_pre_onboarding.web.recruitment.dto.response.GetRecruitDetailResponse;
-import assignment.wanted_pre_onboarding.web.recruitment.dto.response.GetRecruitListResponse;
-import assignment.wanted_pre_onboarding.web.recruitment.dto.response.CreateRecruitResponse;
-import assignment.wanted_pre_onboarding.web.recruitment.dto.response.UpdateRecruitResponse;
+import assignment.wanted_pre_onboarding.web.recruitment.dto.response.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -26,10 +19,6 @@ public class RecruitmentService {
 
     private final RecruitmentRepository recruitmentRepository;
     private final CompanyRepository companyRepository;
-
-    private final UserRepository userRepository;
-
-    private final ApplyRepository applyRepository;
 
     public CreateRecruitResponse createRecruit(CreateRecruitRequest request) {
         Optional<Company> findCompany = companyRepository.findById(request.getCompanyId());
@@ -102,5 +91,26 @@ public class RecruitmentService {
         GetRecruitDetailResponse response = GetRecruitDetailResponse.of(company, findRecruit.get(), companyRecruits);
 
         return response;
+    }
+
+    public List<GetSearchRecruitResponse> getSearchRecruitList(String search) {
+        List<Recruitment> all = recruitmentRepository.findAll();
+
+        List<GetSearchRecruitResponse> result = new ArrayList<>();
+        for (Recruitment recruitment : all) {
+            System.out.println(" hello ");
+            if (recruitment.getCompany().getCompanyName().contains(search) || recruitment.getCompany().getCountry().contains(search) || recruitment.getCompany().getRegion().contains(search)) {
+                GetSearchRecruitResponse response = GetSearchRecruitResponse.of(recruitment);
+
+                result.add(response);
+            }
+
+            if (recruitment.getPosition().contains(search) || recruitment.getContents().contains(search) || recruitment.getTechInfo().contains(search)) {
+                GetSearchRecruitResponse response = GetSearchRecruitResponse.of(recruitment);
+
+                result.add(response);
+            }
+        }
+        return result;
     }
 }
