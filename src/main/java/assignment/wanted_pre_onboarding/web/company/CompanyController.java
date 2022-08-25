@@ -1,11 +1,9 @@
 package assignment.wanted_pre_onboarding.web.company;
 
 import assignment.wanted_pre_onboarding.common.ApiResponse;
-import assignment.wanted_pre_onboarding.domain.company.CompanyRepository;
 import assignment.wanted_pre_onboarding.service.CompanyService;
 import assignment.wanted_pre_onboarding.web.company.dto.request.CreateCompanyRequest;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +21,4 @@ public class CompanyController {
         companyService.createCompany(request);
         return ApiResponse.SUCCESS;
     }
-
-
 }

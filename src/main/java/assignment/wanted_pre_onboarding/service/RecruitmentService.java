@@ -77,6 +77,26 @@ public class RecruitmentService {
         return recruitList;
     }
 
+    public List<GetSearchRecruitResponse> getSearchRecruitList(String search) {
+        List<Recruitment> all = recruitmentRepository.findAll();
+
+        List<GetSearchRecruitResponse> result = new ArrayList<>();
+        for (Recruitment recruitment : all) {
+            if (recruitment.getCompany().getCompanyName().contains(search) || recruitment.getCompany().getCountry().contains(search) || recruitment.getCompany().getRegion().contains(search)) {
+                GetSearchRecruitResponse response = GetSearchRecruitResponse.of(recruitment);
+
+                result.add(response);
+            }
+
+            if (recruitment.getPosition().contains(search) || recruitment.getTechInfo().contains(search)) {
+                GetSearchRecruitResponse response = GetSearchRecruitResponse.of(recruitment);
+
+                result.add(response);
+            }
+        }
+        return result;
+    }
+
     public GetRecruitDetailResponse getRecruitDetail(Long id) {
         Optional<Recruitment> findRecruit = recruitmentRepository.findById(id);
         Company company = findRecruit.get().getCompany();
@@ -85,32 +105,13 @@ public class RecruitmentService {
         List<Long> companyRecruits = new ArrayList<>();
         List<Recruitment> recruits = recruitmentRepository.findByCompanyId(companyId);
         for (Recruitment recruit : recruits) {
-            companyRecruits.add(recruit.getId());
+            if (!recruit.getId().equals(id)) {
+                companyRecruits.add(recruit.getId());
+            }
         }
 
         GetRecruitDetailResponse response = GetRecruitDetailResponse.of(company, findRecruit.get(), companyRecruits);
 
         return response;
-    }
-
-    public List<GetSearchRecruitResponse> getSearchRecruitList(String search) {
-        List<Recruitment> all = recruitmentRepository.findAll();
-
-        List<GetSearchRecruitResponse> result = new ArrayList<>();
-        for (Recruitment recruitment : all) {
-            System.out.println(" hello ");
-            if (recruitment.getCompany().getCompanyName().contains(search) || recruitment.getCompany().getCountry().contains(search) || recruitment.getCompany().getRegion().contains(search)) {
-                GetSearchRecruitResponse response = GetSearchRecruitResponse.of(recruitment);
-
-                result.add(response);
-            }
-
-            if (recruitment.getPosition().contains(search) || recruitment.getContents().contains(search) || recruitment.getTechInfo().contains(search)) {
-                GetSearchRecruitResponse response = GetSearchRecruitResponse.of(recruitment);
-
-                result.add(response);
-            }
-        }
-        return result;
     }
 }

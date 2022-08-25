@@ -41,15 +41,15 @@ public class RecruitmentController {
         return ApiResponse.success(responses);
     }
 
-    @GetMapping("/detail/{id}")
-    public ApiResponse<GetRecruitDetailResponse> getRecruitDetail(@PathVariable Long id) {
-        GetRecruitDetailResponse response = recruitmentService.getRecruitDetail(id);
-        return ApiResponse.success(response);
-    }
-
     @GetMapping("/search")
     public ApiResponse<List<GetSearchRecruitResponse>> getSearchRecruitList(@RequestParam String search) {
         List<GetSearchRecruitResponse> response = recruitmentService.getSearchRecruitList(search);
+        return ApiResponse.success(response);
+    }
+
+    @GetMapping("/detail/{id}")
+    public ApiResponse<GetRecruitDetailResponse> getRecruitDetail(@PathVariable Long id) {
+        GetRecruitDetailResponse response = recruitmentService.getRecruitDetail(id);
         return ApiResponse.success(response);
     }
 }
