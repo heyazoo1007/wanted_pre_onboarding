@@ -2,10 +2,7 @@ package assignment.wanted_pre_onboarding.web.recruitment;
 
 import assignment.wanted_pre_onboarding.common.ApiResponse;
 import assignment.wanted_pre_onboarding.service.RecruitmentService;
-import assignment.wanted_pre_onboarding.web.recruitment.dto.request.DeleteRecruitRequest;
-import assignment.wanted_pre_onboarding.web.recruitment.dto.request.CreateRecruitRequest;
-import assignment.wanted_pre_onboarding.web.recruitment.dto.request.GetRecruitDetailRequest;
-import assignment.wanted_pre_onboarding.web.recruitment.dto.request.UpdateRecruitRequest;
+import assignment.wanted_pre_onboarding.web.recruitment.dto.request.*;
 import assignment.wanted_pre_onboarding.web.recruitment.dto.response.GetRecruitDetailResponse;
 import assignment.wanted_pre_onboarding.web.recruitment.dto.response.GetRecruitListResponse;
 import assignment.wanted_pre_onboarding.web.recruitment.dto.response.CreateRecruitResponse;

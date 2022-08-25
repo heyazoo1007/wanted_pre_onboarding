@@ -2,6 +2,7 @@ package assignment.wanted_pre_onboarding.domain.recruitment;
 
 
 import assignment.wanted_pre_onboarding.domain.company.Company;
+import assignment.wanted_pre_onboarding.domain.user.User;
 import lombok.*;
 
 import javax.persistence.*;

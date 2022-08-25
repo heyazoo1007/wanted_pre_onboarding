@@ -1,13 +1,14 @@
 package assignment.wanted_pre_onboarding.service;
 
+import assignment.wanted_pre_onboarding.domain.apply.Apply;
+import assignment.wanted_pre_onboarding.domain.apply.ApplyRepository;
 import assignment.wanted_pre_onboarding.domain.company.Company;
 import assignment.wanted_pre_onboarding.domain.company.CompanyRepository;
 import assignment.wanted_pre_onboarding.domain.recruitment.Recruitment;
 import assignment.wanted_pre_onboarding.domain.recruitment.RecruitmentRepository;
-import assignment.wanted_pre_onboarding.web.recruitment.dto.request.DeleteRecruitRequest;
-import assignment.wanted_pre_onboarding.web.recruitment.dto.request.CreateRecruitRequest;
-import assignment.wanted_pre_onboarding.web.recruitment.dto.request.GetRecruitDetailRequest;
-import assignment.wanted_pre_onboarding.web.recruitment.dto.request.UpdateRecruitRequest;
+import assignment.wanted_pre_onboarding.domain.user.User;
+import assignment.wanted_pre_onboarding.domain.user.UserRepository;
+import assignment.wanted_pre_onboarding.web.recruitment.dto.request.*;
 import assignment.wanted_pre_onboarding.web.recruitment.dto.response.GetRecruitDetailResponse;
 import assignment.wanted_pre_onboarding.web.recruitment.dto.response.GetRecruitListResponse;
 import assignment.wanted_pre_onboarding.web.recruitment.dto.response.CreateRecruitResponse;
@@ -25,6 +26,10 @@ public class RecruitmentService {
 
     private final RecruitmentRepository recruitmentRepository;
     private final CompanyRepository companyRepository;
+
+    private final UserRepository userRepository;
+
+    private final ApplyRepository applyRepository;
 
     public CreateRecruitResponse createRecruit(CreateRecruitRequest request) {
         Optional<Company> findCompany = companyRepository.findById(request.getCompanyId());
@@ -88,7 +93,6 @@ public class RecruitmentService {
         Company company = findRecruit.get().getCompany();
         Long companyId = company.getId();
 
-        //recruitrepository에서 companyId를 가진 채용공고의 id가 필요함
         List<Long> companyRecruits = new ArrayList<>();
         List<Recruitment> recruits = recruitmentRepository.findByCompanyId(companyId);
         for (Recruitment recruit : recruits) {
