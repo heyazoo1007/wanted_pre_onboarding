@@ -4,11 +4,9 @@ import assignment.wanted_pre_onboarding.common.exception.model.ConflictException
 import assignment.wanted_pre_onboarding.controller.company.dto.request.CreateCompanyRequest;
 import assignment.wanted_pre_onboarding.domain.company.Company;
 import assignment.wanted_pre_onboarding.domain.company.CompanyRepository;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.function.Executable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
