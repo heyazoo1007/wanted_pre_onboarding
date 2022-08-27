@@ -14,7 +14,6 @@ import static assignment.wanted_pre_onboarding.common.exception.ErrorCode.CONFLI
 @Service
 @RequiredArgsConstructor
 public class CompanyService {
-
     private final CompanyRepository companyRepository;
 
     public void createCompany(CreateCompanyRequest request) {
