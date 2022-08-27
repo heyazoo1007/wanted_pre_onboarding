@@ -112,6 +112,7 @@ public class RecruitmentService {
 
     public GetRecruitDetailResponse getRecruitDetail(Long id) {
         Optional<Recruitment> findRecruit = recruitmentRepository.findById(id);
+
         if (findRecruit.isEmpty()) {
             throw new NotFoundException("존재하지 않는 채용공고입니다.", NOT_FOUND_EXCEPTION);
         }

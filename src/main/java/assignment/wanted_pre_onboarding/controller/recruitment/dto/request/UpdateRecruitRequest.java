@@ -1,9 +1,6 @@
 package assignment.wanted_pre_onboarding.controller.recruitment.dto.request;
 
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 @ToString
 @Getter
@@ -15,4 +12,13 @@ public class UpdateRecruitRequest {
     private Integer reward;
     private String contents;
     private String techInfo;
+
+    @Builder
+    public UpdateRecruitRequest(Long recruitId, String position, Integer reward, String contents, String techInfo) {
+        this.recruitId = recruitId;
+        this.position = position;
+        this.reward = reward;
+        this.contents = contents;
+        this.techInfo = techInfo;
+    }
 }

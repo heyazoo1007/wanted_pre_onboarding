@@ -8,15 +8,15 @@ import lombok.*;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class CreateRecruitResponse {
 
-    private Long id;
+    private Long recruitId;
     private String position;
     private Integer reward;
     private String contents;
     private String techInfo;
 
     @Builder
-    public CreateRecruitResponse(Long id, String position, Integer reward, String contents, String techInfo) {
-        this.id = id;
+    public CreateRecruitResponse(Long recruitId, String position, Integer reward, String contents, String techInfo) {
+        this.recruitId = recruitId;
         this.position = position;
         this.reward = reward;
         this.contents = contents;
@@ -25,7 +25,7 @@ public class CreateRecruitResponse {
 
     public static CreateRecruitResponse of(Recruitment recruitment) {
         CreateRecruitResponse response = CreateRecruitResponse.builder()
-                .id(recruitment.getId())
+                .recruitId(recruitment.getId())
                 .position(recruitment.getPosition())
                 .reward(recruitment.getReward())
                 .contents(recruitment.getContents())
