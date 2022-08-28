@@ -8,7 +8,7 @@
 
 📄 [API Docs](https://mixed-leotard-ccd.notion.site/9531095ac5dd478ca343bb916a33d63c?v=588ce725c00742abafa4d1ea0c37e330) </br>
 
-📄 [DB 설계] 
+📄 [DB 설계](https://mixed-leotard-ccd.notion.site/DB-fb6cf49c73fd40d8ba7c480853a3a307)
 </br>
 
 ⚒️ Tech Stack </br>
